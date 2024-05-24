@@ -15,7 +15,7 @@ In particular, linking covariate effects across transitions is needed to conduct
 
 ## Installation
 
-You can install the package FSGLmstate from GitHub with:
+You can install the current package version FSGLmstate from GitHub with:
 
 ```R
 # install.packages("devtools")
