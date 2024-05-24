@@ -27,9 +27,9 @@ library(FSGLmstate)
 
 ## Features
 
-- Multi-state partial log-likelihood function with derivatives
-- Multi-state Cox estimation algorithms: Gradient ascent & Newton-Raphson based on long format data
-- Alternatin direction method of multipliers (ADMM) for FSGL penalized multi-state models
+- Multi-state partial log-likelihood function with first and second derivatives
+- Multi-state Cox estimation algorithms gradient ascent & Newton-Raphson based on long format data
+- Alternating direction method of multipliers (ADMM) for FSGL penalized multi-state models
 - Choice of optimal tuning parameter by generalized cross-validation (GCV)
 
 ## Contact
