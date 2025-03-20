@@ -1,6 +1,6 @@
 # FSGLmstate
 
-`FSGLmstate` is an R package that performs variable selection for fused sparse-group lasso (FSGL) penalized multi-state models (Miah et al., 2024).
+`FSGLmstate` is an R package that performs variable selection via fused sparse-group lasso (FSGL) penalized multi-state models [(Miah et al., 2024)](https://doi.org/10.48550/arXiv.2411.17394).
 
 ## Abstract
 
@@ -15,7 +15,7 @@ In particular, linking covariate effects across transitions is needed to conduct
 
 ## Installation
 
-You can install the current package version FSGLmstate from GitHub with:
+You can install the current package version `FSGLmstate` from GitHub with:
 
 ```R
 # install.packages("devtools")
@@ -33,9 +33,9 @@ library(FSGLmstate)
 ## Features
 
 - Multi-state partial log-likelihood function with first and second derivatives
-- Multi-state Cox estimation algorithms gradient ascent & Newton-Raphson based on long format data
-- Alternating direction method of multipliers (ADMM) for FSGL penalized multi-state models
-- Choice of optimal tuning parameter by generalized cross-validation (GCV)
+- Multi-state Cox estimation algorithms (gradient ascent & Newton-Raphson) based on long format data
+- FSGLmstate algorithm: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models
+- Choice of optimal tuning parameters by generalized cross-validation (GCV)
 
 ## Contact
 
