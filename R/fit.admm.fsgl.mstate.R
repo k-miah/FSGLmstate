@@ -14,9 +14,9 @@
 #' @param ng [numeric]: Number of groups for the group penalty
 #' @param groupsizes [vector]: Vector of length ngroups that gives the size of each group in the order they appear in the K matrix (Sum should equal ng)
 #' @param penalty.factor [vector]: Individual penalty scaling factor (default: 1)
-#' @param lambda [numeric]: Overall tuning parameter in `\[0,1\]`
-#' @param alpha [numeric]: Tuning parameter in `\[0,1\]`; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty
-#' @param gamma [numeric]: Tuning parameter in `\[0,1\]`; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty
+#' @param lambda [numeric]: Overall tuning parameter in \[0,1\]
+#' @param alpha [numeric]: Tuning parameter in \[0,1\]; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty
+#' @param gamma [numeric]: Tuning parameter in \[0,1\]; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty
 #' @param rho [numeric]: Augmented Lagrangian parameter (ADMM step size; default: 1)
 #' @param beta.init [vector]: Initial value of beta (default: 0)
 #' @param est_algorithm [character]: Cox estimation algorithm (default:'gradient.ascent')

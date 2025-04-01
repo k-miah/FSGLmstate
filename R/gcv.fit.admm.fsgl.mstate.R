@@ -2,7 +2,7 @@
 #'
 #' R-function utilizing ADMM to fit FSGL-penalized multi-state models for beta estimation for optimal lambda with minimal general cross-validation statistic (GCV) via grid search
 #'
-#' @param lambda.grid [vector]: Candidate vector for overall regularization parameter in `\[0,1\]`
+#' @param lambda.grid [vector]: Candidate vector for overall regularization parameter in \[0,1\]
 #' @param X [data frame]: Regression matrix of dimension n x p (=P*Q) with transition-specific covariates
 #' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status (long format data)
 #' @param penalized [data frame]: Regression matrix of dimension n x p (=P*Q) with covariates that should be penalized
@@ -14,8 +14,8 @@
 #' @param ng [numeric]: Number of groups for the group penalty
 #' @param groupsizes [vector]: Vector of length ngroups that gives the size of each group in the order they appear in the K matrix (Sum should equal ng)
 #' @param penalty.factor [vector]: Individual penalty scaling factor (default: 1)
-#' @param alpha.grid [vector]: Tuning parameter in `\[0,1\]`; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty
-#' @param gamma.grid [vector]: Tuning parameter in `\[0,1\]`; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty
+#' @param alpha.grid [vector]: Tuning parameter in \[0,1\]; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty
+#' @param gamma.grid [vector]: Tuning parameter in \[0,1\]; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty
 #' @param rho [numeric]: Augmented Lagrangian parameter (ADMM step size; default: 1)
 #' @param beta.init [vector]: Initial value of beta (default: 0)
 #' @param step_size [numeric]: Gradient ascent step size in (0,1) (default: .01)
