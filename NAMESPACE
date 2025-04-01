@@ -13,8 +13,3 @@ export(gcv.fit.admm.fsgl.mstate)
 export(pairwise_contrast_matrix)
 export(partial_ll)
 export(penalty_matrix_K)
-
-import(mstate)
-import(penMSM)
-import(gtools)
-import(parallel)
