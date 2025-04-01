@@ -1,6 +1,6 @@
 #' partial_ll
 #'
-#' Partial log-likelihood function
+#' R-function calculating the partial log-likelihood function
 #'
 #' @param X [matrix]: Regression matrix of dimension n_obs x p_vars
 #' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status

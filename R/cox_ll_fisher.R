@@ -1,6 +1,6 @@
 #' cox_ll_fisher
 #'
-#' Fisher information matrix of partial log-likelihood
+#' R-function calculating Fisher information matrix of partial log-likelihood
 #'
 #' @param X [matrix]: Regression matrix of dimension n_obs x p_vars
 #' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status
