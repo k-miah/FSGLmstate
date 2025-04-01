@@ -30,7 +30,7 @@ gcv.fit.admm.fsgl.mstate(
 )
 }
 \arguments{
-\item{lambda.grid}{\link{vector}: Candidate vector for overall regularization parameter in \verb{\[0,1\]}}
+\item{lambda.grid}{\link{vector}: Candidate vector for overall regularization parameter in [0,1]}
 
 \item{X}{\link{data frame}: Regression matrix of dimension n x p (=P*Q) with transition-specific covariates}
 
@@ -54,9 +54,9 @@ gcv.fit.admm.fsgl.mstate(
 
 \item{penalty.factor}{\link{vector}: Individual penalty scaling factor (default: 1)}
 
-\item{alpha.grid}{\link{vector}: Tuning parameter in \verb{\[0,1\]}; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty}
+\item{alpha.grid}{\link{vector}: Tuning parameter in [0,1]; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty}
 
-\item{gamma.grid}{\link{vector}: Tuning parameter in \verb{\[0,1\]}; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty}
+\item{gamma.grid}{\link{vector}: Tuning parameter in [0,1]; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty}
 
 \item{rho}{\link{numeric}: Augmented Lagrangian parameter (ADMM step size; default: 1)}
 

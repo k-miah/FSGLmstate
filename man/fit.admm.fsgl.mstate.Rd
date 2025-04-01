@@ -55,11 +55,11 @@ fit.admm.fsgl.mstate(
 
 \item{penalty.factor}{\link{vector}: Individual penalty scaling factor (default: 1)}
 
-\item{lambda}{\link{numeric}: Overall tuning parameter in \verb{\[0,1\]}}
+\item{lambda}{\link{numeric}: Overall tuning parameter in [0,1]}
 
-\item{alpha}{\link{numeric}: Tuning parameter in \verb{\[0,1\]}; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty}
+\item{alpha}{\link{numeric}: Tuning parameter in [0,1]; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty}
 
-\item{gamma}{\link{numeric}: Tuning parameter in \verb{\[0,1\]}; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty}
+\item{gamma}{\link{numeric}: Tuning parameter in [0,1]; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty}
 
 \item{rho}{\link{numeric}: Augmented Lagrangian parameter (ADMM step size; default: 1)}
 
