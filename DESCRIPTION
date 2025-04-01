@@ -2,11 +2,9 @@ Package: FSGLmstate
 Title: variable selection via fused sparse-group lasso (FSGL) penalized multi-state models
 Version: 0.0.0.9000
 Authors@R: 
-    person("Kaya", "Miah", , "k.miah@dkfz.de", role = "aut")
-Description: Functions for variable selection via fused sparse-group lasso (FSGL) 
-penalized multi-state models incorporating molecular data
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Kaya", "Miah", "k.miah@dkfz.de", role = "aut")
+Description: Functions for variable selection via fused sparse-group lasso (FSGL) penalized multi-state models incorporating molecular data
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
