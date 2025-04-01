@@ -1,19 +1,17 @@
-## penalty_matrix_K - R-function constructing a combined penalty structure matrix
-##                    for use in penalized regression
-##
-## Input:  P                 [numeric]: Number of regression parameters, i.e. covariates
-##         Q                 [numeric]: Number of transitions
-##         fused [character or matrix]: Character string/matrix indicating whether
-##                                      - all pairwise differences ("all") or
-##                                      - adjacent differences ("neighbors") or
-##                                      - user-specific pairs (matrix)
-##                                      shall be penalized for the fused penalty
-##         D                 [matrix]: Difference matrix
-##       groups             [vector]: Vector indicating group membership of regression parameters
-##                                    for the group penalty
-##
-## Output: K                [matrix]: General combined penalty matrix of
-##                                    dimension (P*Q + s + P*Q) x (P*Q)
+#' penalty_matrix_K
+#'
+#' R-function constructing a combined penalty structure matrix for use in penalized regression
+#'
+#' @param P [numeric]: Number of regression parameters, i.e. covariates
+#' @param Q [numeric]: Number of transitions
+#' @param fused [character or matrix]: Character string/matrix indicating whether all pairwise differences ("all") or adjacent differences ("neighbors") or user-specific pairs (matrix) shall be penalized for the fused penalty
+#' @param D [matrix]: Difference matrix
+#' @param groups [vector]: Vector indicating group membership of regression parameters for the group penalty
+#'
+#' @returns K [matrix]: General combined penalty matrix of dimension (P*Q + s + P*Q) x (P*Q)
+#' @export
+#'
+#' @examples
 
 penalty_matrix_K <- function(P, Q, fused = "all", D = NULL, groups){
 

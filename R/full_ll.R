@@ -1,11 +1,16 @@
-# Negative full log-likelihood function:
-
-## Input: X             [matrix]: Regression matrix of dimension n_obs x p_vars
-##        d         [data frame]: Data set with variables Tstart, Tstop, trans and status
-##        beta          [vector]: Regression parameter
-##        Riskset       [matrix]: Risk set matrix
-##
-## Output:      loglik [numeric]: Negative full log-likelihood at beta
+#' full_ll
+#'
+#' Negative full log-likelihood function
+#'
+#' @param X [matrix]: Regression matrix of dimension n_obs x p_vars
+#' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status
+#' @param beta [vector]: Regression parameter
+#' @param Riskset [matrix]: Risk set matrix
+#'
+#' @returns loglik [numeric]: Negative full log-likelihood at beta
+#' @export
+#'
+#' @examples
 
 full_ll <- function(X, d, beta, Riskset){
 

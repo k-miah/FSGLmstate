@@ -1,47 +1,35 @@
-## fit.admm.fsgl.mstate - R-function utilizing ADMM for FSGL-penalized multi-state models
-##                        for estimation of beta for one set of tuning parameters
-##
-##        X           [data frame]: Regression matrix of dimension n x p (=P*Q)
-##                                  with transition-specific covariates
-##        d           [data frame]: Data set with variables Tstart, Tstop, trans and status
-##                                  (long format data)
-##        penalized   [data frame]: Regression matrix of dimension n x p (=P*Q)
-##                                  with covariates that should be penalized
-##        unpenalized [data frame]: Regression matrix of dimension n x p (=P*Q)
-##                                  with additional covariates that should remain unpenalized
-##        K               [matrix]: Penalty matrix of dimension M x p (=P*Q)
-##        standardize      [logic]: Standardization of design matrix X
-##                                  (TRUE: columns divided by standard deviation)
-##        trace            [logic]: Storage of updates/history at iteration k
-
-##        nl             [numeric]: Number of rows of K that encode the lasso penalty
-##                                  (If lasso penalty is applied to all coefficients: p)
-##        nf             [numeric]: Number of rows of K that encode the fused penalty
-##        ng             [numeric]: Number of groups for the group penalty
-##        groupsizes      [vector]: Vector of length ngroups that gives the size of each group
-##                                  in the order they appear in the K matrix (Sum should equal ng)
-
-##        penalty.factor  [vector]: Individual penalty scaling factor (default: 1)
-##        alpha          [numeric]: Tuning parameter in [0,1]; controls degree of
-##                                  group (alpha = 0) vs lasso (alpha=1) penalty
-##        gamma          [numeric]: Tuning parameter in [0,1]; controls degree of
-##                                  lasso (gamma=1) vs fused (gamma=0) penalty
-
-##        rho            [numeric]: Augmented Lagrangian parameter (ADMM step size; default: 1)
-##        beta.init       [vector]: Initial value of beta (default: 0)
-
-##       est_algorithm [character]: Cox estimation algorithm (default:'gradient.ascent')
-##        step_size      [numeric]: Cox estimation step size in (0,1) (default: .01)
-##        est_tol        [numeric]: Tolerance of stopping criterion (partial log-likelihood)
-##                                  for beta estimation (default: 1e-6)
-
-##        eps_rel        [numeric]: Relative tolerance for ADMM stopping criterion (default: .01)
-##        eps_abs        [numeric]: Absolute tolerance for ADMM stopping criterion (default: .0001)
-##        max_iter       [numeric]: Maximum number of iterations (default: 1000)
-##
-## Output:              res [list]: Beta estimation at stopping iteration 'num.iter'
-##                                  with history
-
+#' fit.admm.fsgl.mstate
+#'
+#' R-function utilizing ADMM for FSGL-penalized multi-state models for estimation of beta for one set of tuning parameters
+#'
+#' @param X [data frame]: Regression matrix of dimension n x p (=P*Q) with transition-specific covariates
+#' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status (long format data)
+#' @param penalized [data frame]: Regression matrix of dimension n x p (=P*Q) with covariates that should be penalized
+#' @param unpenalized [data frame]: Regression matrix of dimension n x p (=P*Q) with additional covariates that should remain unpenalized
+#' @param K [matrix]: Penalty matrix of dimension M x p (=P*Q)
+#' @param standardize [logic]: Standardization of design matrix X (TRUE: columns divided by standard deviation)
+#' @param trace [logic]: Storage of updates/history at iteration k
+#' @param nl [numeric]: Number of rows of K that encode the lasso penalty (If lasso penalty is applied to all coefficients: p)
+#' @param nf [numeric]: Number of rows of K that encode the fused penalty
+#' @param ng [numeric]: Number of groups for the group penalty
+#' @param groupsizes [vector]: Vector of length ngroups that gives the size of each group in the order they appear in the K matrix (Sum should equal ng)
+#' @param penalty.factor [vector]: Individual penalty scaling factor (default: 1)
+#' @param lambda [numeric]: Overall tuning parameter in [0,1]
+#' @param alpha [numeric]: Tuning parameter in [0,1]; controls degree of group (alpha = 0) vs lasso (alpha=1) penalty
+#' @param gamma [numeric]: Tuning parameter in [0,1]; controls degree of lasso (gamma=1) vs fused (gamma=0) penalty
+#' @param rho [numeric]: Augmented Lagrangian parameter (ADMM step size; default: 1)
+#' @param beta.init [vector]: Initial value of beta (default: 0)
+#' @param est_algorithm [character]: Cox estimation algorithm (default:'gradient.ascent')
+#' @param step_size [numeric]: Cox estimation step size in (0,1) (default: .01)
+#' @param est_tol [numeric]: Tolerance of stopping criterion (partial log-likelihood) for beta estimation (default: 1e-6)
+#' @param eps_rel [numeric]: Relative tolerance for ADMM stopping criterion (default: .01)
+#' @param eps_abs [numeric]: Absolute tolerance for ADMM stopping criterion (default: .0001)
+#' @param max_iter[numeric]: Maximum number of iterations (default: 1000)
+#'
+#' @returns res [list]: Beta estimation at stopping iteration 'num.iter' with history
+#' @export
+#'
+#' @examples
 
 fit.admm.fsgl.mstate <- function(X, d, penalized = NULL, unpenalized = NULL, K,
                                  standardize = FALSE, trace = TRUE,
@@ -51,8 +39,7 @@ fit.admm.fsgl.mstate <- function(X, d, penalized = NULL, unpenalized = NULL, K,
                                  est_algorithm = "gradient.ascent",
                                  step_size = 0.01, est_tol = 1e-6,
                                  eps_rel = 1e-2, eps_abs = 1e-4,
-                                 max_iter = 1000, seed = 2024){
-  set.seed(seed)
+                                 max_iter = 1000){
 
   n <- nrow(X)
   pq <- ncol(K)

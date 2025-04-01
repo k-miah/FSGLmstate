@@ -1,17 +1,19 @@
-# Gradient of augmented Lagrangian of partial log-likelihood:
-
-## cox_ll_lagr_gradient - R-function calculating the gradient of the augmented Lagrangian
-##                        form of partial log-likelihood
-##
-## Input: X             [matrix]: Regression matrix of dimension n_obs x p_vars
-##        d         [data frame]: Data set with variables Tstart, Tstop, trans and status
-##        beta          [vector]: Regression parameter
-##        Riskset         [list]: Risk set list
-##        rho          [numeric]: Augmented Lagrangian parameter (step size; default: 1)
-##        theta        [numeric]: ADMM parameter theta (dimension M x 1)
-##        nu           [numeric]: ADMM parameter nu (dimension M x 1)
-##
-## Output: scorevector [numeric]: Gradient at beta
+#' cox_ll_lagr_gradient
+#'
+#' R-function calculating the gradient of the augmented Lagrangian form of full/partial log-likelihood
+#'
+#' @param X [matrix]: Design matrix of dimension n_long x p_vars
+#' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status
+#' @param beta [vector]: Regression parameter
+#' @param Riskset [list]: Risk set list
+#' @param rho [numeric]: Augmented Lagrangian parameter (ADMM step size; default: 1)
+#' @param theta [vector]: ADMM parameter theta (dimension M x 1)
+#' @param nu [vector]: ADMM parameter nu (dimension M x 1)
+#'
+#' @returns scorevector: Gradient at beta
+#' @export
+#'
+#' @examples
 
 cox_ll_lagr_gradient <- function(X, d, beta, Riskset, rho = 1, theta, nu){
 

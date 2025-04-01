@@ -1,9 +1,14 @@
-## S_kappa - R-function implementing the vector soft thresholding operator S_kappa(a)
-
-## Input: a      [vector]: Numeric vector
-##        kappa [numeric]: Scalar
-
-## Output:    s [numeric]: Shrinked value
+#' S_kappa
+#'
+#' R-function implementing the vector soft thresholding operator S_kappa(a)
+#'
+#' @param a [vector]: Numeric vector
+#' @param kappa [numeric]: Scalar
+#'
+#' @returns s [numeric]: Shrinked value
+#' @export
+#'
+#' @examples
 
 S_kappa <- function(a, kappa){
   a <- as.matrix(a)

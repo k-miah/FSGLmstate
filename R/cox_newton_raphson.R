@@ -1,20 +1,23 @@
-## cox_newton_raphson - R-function implementing Newton-Raphson for estimation
-##                      in the Cox PH model
-##
-## Input: X          [matrix]: Regression matrix of dimension n_obs x p_vars
-##        d      [data frame]: Data set with variables Tstart, Tstop, trans and status
-##        K          [matrix]: Penalty matrix of dimension M x p (M=p+m+g)
-
-##        beta.init  [vector]: Initial value of beta (default: 0)
-##        Riskset      [list]: Risk set list
-##        max_iter  [numeric]: Maximum number of iterations (default: 1000)
-##        tolerance [numeric]: Tolerance for stopping criterion (default: 1e-6)
-##        eps       [numeric]: Step size in [0,1] (default: .01)
-##        rho       [numeric]: Augmented Lagrangian parameter (step size; default: 1)
-##        theta     [numeric]: ADMM parameter theta = beta
-##        nu        [numeric]: ADMM parameter nu = theta - beta
-##
-## Output:         res [list]: Beta estimation for Cox model at stopping iteration 'iter'
+#' cox_newton_raphson
+#'
+#'R-function implementing Newton-Raphson for estimation in the Cox PH model
+#'
+#' @param X [matrix]: Regression matrix of dimension n_obs x p_vars
+#' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status
+#' @param K [matrix]: Penalty matrix of dimension M x p
+#' @param beta.init [vector]: Initial value of beta (default: 0)
+#' @param Riskset [list]: Risk set list
+#' @param max_iter [numeric]: Maximum number of iterations (default: 1000)
+#' @param tolerance [numeric]: Tolerance for stopping criterion (default: 1e-6)
+#' @param eps [numeric]: Step size in [0,1] (default: .01)
+#' @param rho [numeric]: Augmented Lagrangian parameter (step size; default: 1)
+#' @param theta [vector]: ADMM parameter theta = beta
+#' @param nu [vector]: ADMM parameter nu = theta - beta
+#'
+#' @returns res [list]: Beta estimation for Cox model at stopping iteration 'iter'
+#' @export
+#'
+#' @examples
 
 cox_newton_raphson <- function(X, d, K, beta.init = NULL, Riskset,
                                max_iter = 1000, tolerance = 1e-6, eps = 0.01,
@@ -79,7 +82,6 @@ cox_newton_raphson <- function(X, d, K, beta.init = NULL, Riskset,
     it <- it + 1
     beta <- beta_new
   }
-  # If max_iter is reached, print warning and exit loop
   if(it == max_iter){
     warning(paste("Newton-Raphson did not converge after", max_iter, "iterations\n"))
   }

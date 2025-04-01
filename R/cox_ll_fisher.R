@@ -1,11 +1,16 @@
-# Fisher information matrix of partial log-likelihood:
-
-## Input: X             [matrix]: Regression matrix of dimension n_obs x p_vars
-##        d         [data frame]: Data set with variables Tstart, Tstop, trans and status
-##        beta          [vector]: Regression parameter
-##        Riskset         [list]: Risk set list
-##
-## Output:        info [numeric]: Fisher information matrix at beta
+#' cox_ll_fisher
+#'
+#' Fisher information matrix of partial log-likelihood
+#'
+#' @param X [matrix]: Regression matrix of dimension n_obs x p_vars
+#' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status
+#' @param beta [vector]: Regression parameter
+#' @param Riskset [list]: Risk set list
+#'
+#' @returns info: Fisher information matrix at beta
+#' @export
+#'
+#' @examples
 
 cox_ll_fisher <- function(X, d, beta, Riskset){
 
