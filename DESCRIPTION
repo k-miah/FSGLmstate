@@ -4,6 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person(given = "Kaya", family = "Miah", email = "k.miah@dkfz.de", role = c("aut", "cre"))
 Description: Functions for variable selection via fused sparse-group lasso (FSGL) penalized multi-state models incorporating molecular data.
+Depends: mstate, penMSM, gtools, parallel
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
