@@ -1,4 +1,4 @@
-#' cox_ll_lagr_gradient_K
+#' Calculate gradient of the augmented Lagrangian form of log-likelihood function
 #'
 #' R-function calculating the gradient of the augmented Lagrangian form of full/partial log-likelihood with penalty matrix K
 #'

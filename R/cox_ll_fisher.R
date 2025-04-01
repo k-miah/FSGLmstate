@@ -1,4 +1,4 @@
-#' cox_ll_fisher
+#' calculate Fisher information matrix of partial log-likelihood
 #'
 #' R-function calculating Fisher information matrix of partial log-likelihood
 #'

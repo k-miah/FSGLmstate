@@ -1,4 +1,4 @@
-#' Adapt_rho
+#' Calculate adaptive step-size for Alternating Direction Method of Multipliers (ADMM) algorithm
 #'
 #' R-function implementing adaptive step-size for ADMM
 #'

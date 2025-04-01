@@ -1,6 +1,6 @@
-#' cox_fixed_gradient_ascent
+#' Performing fixed gradient ascent optimization algorithm for estimation in the Cox PH model
 #'
-#' R-function implementing fixed gradient ascent for estimation in the Cox PH model
+#' R-function implementing fixed gradient ascent optimization for estimation in the Cox PH model
 #'
 #' @param X [matrix]: Regression matrix of dimension n_obs x p_vars
 #' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status
@@ -63,7 +63,6 @@ cox_fixed_gradient_ascent <- function(X, d, K, eps = 0.01, beta.init = NULL, Ris
     it <- it + 1
     beta <- beta_new
   }
-  # If max_iter is reached, print warning and exit loop
   if(it == max_iter){
     warning(paste("Gradient ascent did not converge after", max_iter, "iterations\n"))
   }

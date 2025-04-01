@@ -1,4 +1,4 @@
-#' pairwise_contrast_matrix
+#' Construct fused penalty structure matrix
 #'
 #' R-function constructing the fused penalty structure matrix of all pairwise differences for use in penalized regression
 #'

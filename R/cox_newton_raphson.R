@@ -1,6 +1,6 @@
-#' cox_newton_raphson
+#' Performing Newton-Raphson optimization algorithm for estimation in the Cox PH model
 #'
-#'R-function implementing Newton-Raphson for estimation in the Cox PH model
+#'R-function implementing Newton-Raphson optimization for estimation in the Cox PH model
 #'
 #' @param X [matrix]: Regression matrix of dimension n_obs x p_vars
 #' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status

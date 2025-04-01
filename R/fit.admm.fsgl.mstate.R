@@ -1,6 +1,6 @@
-#' fit.admm.fsgl.mstate
+#' Fit a fused sparse-group lasso (FSGL) penalized multi-state model for fixed set of tuning parameters
 #'
-#' R-function utilizing ADMM for FSGL-penalized multi-state models for estimation of beta for one set of tuning parameters
+#' R-function utilizing Alternating Direction Method of Multipliers (ADMM) optimization for FSGL-penalized multi-state models for estimation of beta for one set of tuning parameters
 #'
 #' @param X [data frame]: Regression matrix of dimension n x p (=P*Q) with transition-specific covariates
 #' @param d [data frame]: Data set with variables Tstart, Tstop, trans and status (long format data)
@@ -24,7 +24,7 @@
 #' @param est_tol [numeric]: Tolerance of stopping criterion (partial log-likelihood) for beta estimation (default: 1e-6)
 #' @param eps_rel [numeric]: Relative tolerance for ADMM stopping criterion (default: .01)
 #' @param eps_abs [numeric]: Absolute tolerance for ADMM stopping criterion (default: .0001)
-#' @param max_iter[numeric]: Maximum number of iterations (default: 1000)
+#' @param max_iter [numeric]: Maximum number of iterations (default: 1000)
 #'
 #' @returns res [list]: Beta estimation at stopping iteration 'num.iter' with history
 #' @export

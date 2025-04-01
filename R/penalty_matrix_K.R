@@ -1,4 +1,4 @@
-#' penalty_matrix_K
+#' Construct combined penalty structure matrix
 #'
 #' R-function constructing a combined penalty structure matrix for use in penalized regression
 #'

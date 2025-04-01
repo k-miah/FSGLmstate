@@ -1,6 +1,6 @@
-#' gcv.fit.admm.fsgl.mstate
+#' Fit a fused sparse-group lasso (FSGL) penalized multi-state model for optimal lambda with minimal general cross-validation (GCV) criterion
 #'
-#' R-function utilizing ADMM to fit FSGL-penalized multi-state models for beta estimation for optimal lambda with minimal general cross-validation statistic (GCV) via grid search
+#' R-function utilizing Alternating Direction Method of Multipliers (ADMM) optimization to fit FSGL-penalized multi-state models for beta estimation for optimal lambda with minimal general cross-validation statistic (GCV) via grid search
 #'
 #' @param lambda.grid [vector]: Candidate vector for overall regularization parameter in \[0,1\]
 #' @param X [data frame]: Regression matrix of dimension n x p (=P*Q) with transition-specific covariates
