@@ -2,7 +2,7 @@
 % Please edit documentation in R/cox_fixed_gradient_ascent.R
 \name{cox_fixed_gradient_ascent}
 \alias{cox_fixed_gradient_ascent}
-\title{cox_fixed_gradient_ascent}
+\title{Performing fixed gradient ascent optimization algorithm for estimation in the Cox PH model}
 \usage{
 cox_fixed_gradient_ascent(
   X,
@@ -45,5 +45,5 @@ cox_fixed_gradient_ascent(
 res \link{list}: Beta estimation for Cox model at stopping iteration 'iter'
 }
 \description{
-R-function implementing fixed gradient ascent for estimation in the Cox PH model
+R-function implementing fixed gradient ascent optimization for estimation in the Cox PH model
 }

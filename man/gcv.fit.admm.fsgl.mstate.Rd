@@ -2,7 +2,7 @@
 % Please edit documentation in R/gcv.fit.admm.fsgl.mstate.R
 \name{gcv.fit.admm.fsgl.mstate}
 \alias{gcv.fit.admm.fsgl.mstate}
-\title{gcv.fit.admm.fsgl.mstate}
+\title{Fit a fused sparse-group lasso (FSGL) penalized multi-state model for optimal lambda with minimal general cross-validation (GCV) criterion}
 \usage{
 gcv.fit.admm.fsgl.mstate(
   lambda.grid,
@@ -78,5 +78,5 @@ gcv.fit.admm.fsgl.mstate(
 res.min.gcv \link{list}: Beta estimation for optimal lambda (i.e. minimal GCV)
 }
 \description{
-R-function utilizing ADMM to fit FSGL-penalized multi-state models for beta estimation for optimal lambda with minimal general cross-validation statistic (GCV) via grid search
+R-function utilizing Alternating Direction Method of Multipliers (ADMM) optimization to fit FSGL-penalized multi-state models for beta estimation for optimal lambda with minimal general cross-validation statistic (GCV) via grid search
 }

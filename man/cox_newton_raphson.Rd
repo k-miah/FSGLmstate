@@ -2,7 +2,7 @@
 % Please edit documentation in R/cox_newton_raphson.R
 \name{cox_newton_raphson}
 \alias{cox_newton_raphson}
-\title{cox_newton_raphson}
+\title{Performing Newton-Raphson optimization algorithm for estimation in the Cox PH model}
 \usage{
 cox_newton_raphson(
   X,
@@ -45,5 +45,5 @@ cox_newton_raphson(
 res \link{list}: Beta estimation for Cox model at stopping iteration 'iter'
 }
 \description{
-R-function implementing Newton-Raphson for estimation in the Cox PH model
+R-function implementing Newton-Raphson optimization for estimation in the Cox PH model
 }

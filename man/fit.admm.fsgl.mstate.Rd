@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit.admm.fsgl.mstate.R
 \name{fit.admm.fsgl.mstate}
 \alias{fit.admm.fsgl.mstate}
-\title{fit.admm.fsgl.mstate}
+\title{Fit a fused sparse-group lasso (FSGL) penalized multi-state model for fixed set of tuning parameters}
 \usage{
 fit.admm.fsgl.mstate(
   X,
@@ -75,11 +75,11 @@ fit.admm.fsgl.mstate(
 
 \item{eps_abs}{\link{numeric}: Absolute tolerance for ADMM stopping criterion (default: .0001)}
 
-\item{max_iter[numeric]:}{Maximum number of iterations (default: 1000)}
+\item{max_iter}{\link{numeric}: Maximum number of iterations (default: 1000)}
 }
 \value{
 res \link{list}: Beta estimation at stopping iteration 'num.iter' with history
 }
 \description{
-R-function utilizing ADMM for FSGL-penalized multi-state models for estimation of beta for one set of tuning parameters
+R-function utilizing Alternating Direction Method of Multipliers (ADMM) optimization for FSGL-penalized multi-state models for estimation of beta for one set of tuning parameters
 }

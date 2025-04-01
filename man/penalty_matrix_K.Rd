@@ -2,7 +2,7 @@
 % Please edit documentation in R/penalty_matrix_K.R
 \name{penalty_matrix_K}
 \alias{penalty_matrix_K}
-\title{penalty_matrix_K}
+\title{Construct combined penalty structure matrix}
 \usage{
 penalty_matrix_K(P, Q, fused = "all", D = NULL, groups)
 }

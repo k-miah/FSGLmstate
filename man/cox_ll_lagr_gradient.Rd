@@ -2,7 +2,7 @@
 % Please edit documentation in R/cox_ll_lagr_gradient.R
 \name{cox_ll_lagr_gradient}
 \alias{cox_ll_lagr_gradient}
-\title{cox_ll_lagr_gradient}
+\title{Calculate gradient of the augmented Lagrangian form of log-likelihood function}
 \usage{
 cox_ll_lagr_gradient(X, d, beta, Riskset, rho = 1, theta, nu)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/cox_ll_fisher.R
 \name{cox_ll_fisher}
 \alias{cox_ll_fisher}
-\title{cox_ll_fisher}
+\title{calculate Fisher information matrix of partial log-likelihood}
 \usage{
 cox_ll_fisher(X, d, beta, Riskset)
 }

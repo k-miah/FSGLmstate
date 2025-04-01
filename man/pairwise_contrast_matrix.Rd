@@ -2,7 +2,7 @@
 % Please edit documentation in R/pairwise_contrast_matrix.R
 \name{pairwise_contrast_matrix}
 \alias{pairwise_contrast_matrix}
-\title{pairwise_contrast_matrix}
+\title{Construct fused penalty structure matrix}
 \usage{
 pairwise_contrast_matrix(n.cols)
 }

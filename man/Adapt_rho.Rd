@@ -2,7 +2,7 @@
 % Please edit documentation in R/Adapt_rho.R
 \name{Adapt_rho}
 \alias{Adapt_rho}
-\title{Adapt_rho}
+\title{Calculate adaptive step-size for Alternating Direction Method of Multipliers (ADMM) algorithm}
 \usage{
 Adapt_rho(rho, r_norm, s_norm, tau = 2, eta = 10)
 }
