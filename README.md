@@ -16,7 +16,7 @@ In particular, linking covariate effects across transitions is needed to conduct
 
 ## Installation
 
-You can install the current package version `FSGLmstate` from GitHub with:
+You can install the development package version `FSGLmstate` from GitHub with:
 
 ```R
 # install.packages("devtools")
@@ -33,10 +33,11 @@ library(FSGLmstate)
 
 ## Features
 
-- Multi-state partial log-likelihood function with first and second derivatives
-- Multi-state Cox estimation algorithms (gradient ascent & Newton-Raphson) based on long format data
-- FSGLmstate algorithm: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models
-- Choice of optimal tuning parameters by generalized cross-validation (GCV)
+- `penalty_matrix_K()`: Generation of a penalty structure matrix for use in penalized regression incorporating lasso, fused and group-lasso penalties
+- `fit.admm.fsgl.mstate()`: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models for fixed set of tuning parameters
+- `gcv.fit.admm.fsgl.mstate()`: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models for optimal tuning parameters via generalized cross-validation (GCV) selection criterion
+
+Bugs and issues can be reported at https://github.com/k-miah/FSGLmstate/issues.
 
 ## Contact
 
