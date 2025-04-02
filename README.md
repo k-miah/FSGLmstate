@@ -1,4 +1,5 @@
 # FSGLmstate <img src="https://raw.githubusercontent.com/k-miah/FSGLmstate/main/FSGLmstate.png" alt="Package Logo" align="right" height="250" />
+[![](https://img.shields.io/badge/doi-10.48550/arXiv.2411.17394-yellow.svg)](https://doi.org/10.48550/arXiv.2411.17394)
 
 `FSGLmstate` is an R package that performs variable selection via fused sparse-group lasso (FSGL) penalized multi-state models [(Miah et al., 2024)](https://doi.org/10.48550/arXiv.2411.17394).
 
@@ -11,11 +12,11 @@ In particular, linking covariate effects across transitions is needed to conduct
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Features](#features)
+- [Features](#main-features)
 
 ## Installation
 
-You can install the current package version `FSGLmstate` from GitHub with:
+You can install the development package version `FSGLmstate` from GitHub with:
 
 ```R
 # install.packages("devtools")
@@ -30,12 +31,13 @@ Load the package in R with:
 library(FSGLmstate)
 ```
 
-## Features
+## Main Features
 
-- Multi-state partial log-likelihood function with first and second derivatives
-- Multi-state Cox estimation algorithms (gradient ascent & Newton-Raphson) based on long format data
-- FSGLmstate algorithm: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models
-- Choice of optimal tuning parameters by generalized cross-validation (GCV)
+- `penalty_matrix_K()`: Generation of a penalty structure matrix for use in penalized regression incorporating lasso, fused and group-lasso penalties
+- `fit.admm.fsgl.mstate()`: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models for fixed set of tuning parameters
+- `gcv.fit.admm.fsgl.mstate()`: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models for optimal tuning parameters via generalized cross-validation (GCV) selection criterion
+
+Bugs and issues can be reported at https://github.com/k-miah/FSGLmstate/issues.
 
 ## Contact
 
