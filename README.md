@@ -12,7 +12,7 @@ In particular, linking covariate effects across transitions is needed to conduct
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Features](#features)
+- [Features](#main-features)
 
 ## Installation
 
