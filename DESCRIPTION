@@ -1,6 +1,6 @@
 Package: FSGLmstate
 Title: variable selection via fused sparse-group lasso (FSGL) penalized multi-state models
-Version: 0.0.0.9000
+Version: 0.1.0.9000
 Authors@R: 
     person(given = "Kaya", family = "Miah", email = "k.miah@dkfz.de", role = c("aut", "cre"))
 Description: Functions for variable selection via fused sparse-group lasso (FSGL) penalized multi-state models incorporating molecular data.
