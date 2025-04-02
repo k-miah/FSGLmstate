@@ -31,7 +31,7 @@ Load the package in R with:
 library(FSGLmstate)
 ```
 
-## Features
+## Main Features
 
 - `penalty_matrix_K()`: Generation of a penalty structure matrix for use in penalized regression incorporating lasso, fused and group-lasso penalties
 - `fit.admm.fsgl.mstate()`: Alternating direction method of multipliers (ADMM) optimization for FSGL penalized multi-state models for fixed set of tuning parameters
