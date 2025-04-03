@@ -1,0 +1,286 @@
+---
+title: "FSGLmstate: An R package for variable selection via fused sparse-group lasso (FSGL) penalized multi-state models"
+author: "Kaya Miah"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FSGLmstate: An R package for variable selection via fused sparse-group lasso (FSGL) penalized multi-state models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+The purpose of the present vignette is to demonstrate the usage of FSGLmstate
+for variable selection via fused sparse-group lasso (FSGL) penalized multi-state 
+models based on clinical and molecular data (Miah et al., 2024).
+
+After installation, the FSGLmstate package is loaded in the usual way:
+
+```{r setup}
+# devtools::install_github("k-miah/FSGLmstate")
+library(FSGLmstate)
+
+R.version$version.string
+packageDescription("FSGLmstate", fields = "Version")
+
+```
+
+
+## Data preparation
+
+For illustration purposes, we use a simulated multi-state data set based on a 
+9-state model of the acute myeloid leukemia (AML) disease pathway as reported in 
+Section~5 of Miah et al. (2024).
+
+In the following, wide format data is transformed to long format data as in the
+mstate R package (see details in Wreede et al., 2011).
+
+```{r preprocessing}
+
+# Load data:
+# data("sim_data_aml")
+
+# View data:
+head("sim_data_aml")
+
+q <- 8 #transitions
+p <- 2 #covariates
+
+
+# Covariates:
+
+covs <- paste0("X", 1:p)
+
+
+# Transition matrix:
+
+tmat <- transMat(list(c(2,3), c(4,5), c(), c(6,7), c(), c(8,9), c(), c(), c()),
+                 names = c("Active disease", "CR1", "Death (no CR)", 
+                           "Relapse1", "NRM (CR)", "CR2", "RM", 
+                           "Relapse2", "Death (CR2)"))
+
+# Long format data:
+
+MSprep <- msprep(time = c(NA, 'stop1', 'stop1', 'stop2', 'stop2', 
+                          'stop3', 'stop3', 'stop4', 'stop4'), 
+                 status = c(NA, 'CR1', 'Death_noCR', 'Relapse1', 'NRM_CR', 
+                            'CR2', 'RM', 'Relapse2', 'Death_CR2'), 
+                 data = sim_data_aml, trans=tmat, keep=covs)
+
+
+# Add transition-specific covariates:
+
+long.data <- expand.covs(MSprep, covs, append = TRUE, longnames = FALSE)
+
+
+# Prepare data for applying regularization methods:
+
+d <- subset(long.data, select = c(Tstart, Tstop, trans, status))
+X.all <- subset(long.data, select = names(long.data)[grep("\\.", names(long.data))])
+X <- as.matrix(X.all)
+```
+
+
+## Penalty structure matrix
+
+
+
+```{r}
+
+# Penalty structure matrix K:
+
+s <- 2 # total number of pairs of similar transitions
+
+D <- matrix(ncol = ncol(X), nrow = s, 0)
+colnames(D) <- colnames(X)
+
+# Fuse similar transitions 3 & 7 with equal effect of covariate X1:
+D[1, which(colnames(D) %in% c("X1.3", "X1.7"))] <- c(-1, 1)
+# Fuse similar transitions 4 & 8:
+D[2, which(colnames(D) %in% c("X1.4", "X1.8"))] <- c(-1, 1)
+
+
+# Penalty structure matrix for FSGLmstate:
+
+K2 <- penalty_matrix_K(P = p, Q = q, fused = "specific", D = D, 
+                       groups = rep(1:q, p))
+K2
+
+
+# Penalty structure matrix for LASSOmstate:
+
+K_lasso <- diag(ncol(X))
+K_lasso
+
+```
+
+
+## Estimation via FSGLmstate algorithm
+
+For penalized Cox-type estimation via the FSGLmstate algorithm for a fixed set 
+of tuning parameters $\alpha, \gamma$ and $\lambda$, the R-function \texttt{fit.admm.fsgl.mstate()} 
+can be used as follows:
+
+```{r fixed}
+
+# (A1) Unpenalized estimation: lambda=0
+
+# no standardization needed for binary covariates
+
+# Newton-Raphson:
+res.unpenalized.mstate <- fit.admm.fsgl.mstate(X = X, d = d, K = K_lasso,
+                                               nl = p*q, nf = 0, ng = 0, groupsizes = NULL,
+                                               lambda = 0, alpha = 1, gamma = 1,
+                                               rho = 1, est_algorithm = "Newton-Raphson",
+                                               step_size = 0.01, est_tol = 1e-6, standardize = FALSE,
+                                               eps_rel = 1e-2, eps_abs = 1e-4, max_iter = 20)
+
+# Gradient descent: 
+res.unpenalized.mstate <- fit.admm.fsgl.mstate(X = X, d = d, K = K_lasso,
+                                               nl = p*q, nf = 0, ng = 0, groupsizes = NULL,
+                                               lambda = 0, alpha = 1, gamma = 1,  
+                                               rho = 1, standardize = FALSE,
+                                               step_size = 0.01, est_tol = 1e-6,
+                                               eps_rel = 1e-2, eps_abs = 1e-4, max_iter = 20)
+
+res.unpenalized.mstate$beta
+
+
+# (A2) LASSOmstate: (alpha, gamma) = (1, 1)
+
+res.lasso.mstate <- fit.admm.fsgl.mstate(X = X, d = d, K = K_lasso, 
+                                         nl = p*q, nf = 0, ng = 0, groupsizes = NULL,
+                                         lambda = 8, alpha = 1, gamma = 1,  
+                                         rho = 1, standardize = FALSE,
+                                         step_size = 0.01, est_tol = 1e-6,
+                                         eps_rel = 1e-2, eps_abs = 1e-4, max_iter = 20)
+
+# Regression estimates:
+res.lasso.mstate$beta
+res.lasso.mstate$theta
+```
+
+
+```{r fixedFSGL}
+
+# (A3) Only fused penalized mstate model: (alpha, gamma) = (1, 0) | (0, 0) 
+
+res.fused.mstate <- fit.admm.fsgl.mstate(X = X, d = d, K = K2, 
+                                         nl = p*q, nf = s, ng = q, groupsizes = rep(p, q),
+                                         lambda = 50, alpha = 1, gamma = 0,  
+                                         rho = 1, standardize = FALSE,
+                                         step_size = 0.01, est_tol = 1e-6,
+                                         eps_rel = 1e-3, eps_abs = 1e-3, max_iter = 20)
+
+res.fused.mstate$theta
+
+
+# (A4) Only grouped penalized mstate model: (alpha, gamma) = (0, 1)
+
+# irrelevant transitions with biomarker effect=0: 2,5,6 
+
+res.grouped.mstate <- fit.admm.fsgl.mstate(X = X, d = d, K = K2, 
+                                           nl = p*q, nf = s, ng = q, groupsizes = rep(p, q),
+                                           lambda = 10, alpha = 0, gamma = 1,  
+                                           rho = 1, 
+                                           step_size = 0.01, est_tol = 1e-6, standardize = FALSE,
+                                           eps_rel = 1e-2, eps_abs = 1e-4, max_iter = 20)
+res.grouped.mstate$theta
+
+
+# (A5) FSGLmstate:
+
+# Fixed tuning parameters:
+
+lambda <- 100
+alpha <- 0.9
+gamma <- 0.1
+
+res.fsgl.mstate <- fit.admm.fsgl.mstate(X = X, d = d, K = K2,
+                                        nl = p*q, nf = s, ng = q, groupsizes = rep(p, q),
+                                        lambda = lambda, alpha = alpha, gamma = gamma,
+                                        rho = 1,
+                                        step_size = 0.01, est_tol = 1e-6,
+                                        eps_rel = 1e-2, eps_abs = 1e-4, max_iter = 20)
+
+# Regression estimates:
+res.fsgl.mstate$beta
+res.fsgl.mstate$theta
+```
+
+
+## Choice of optimal tuning parameters via generalized cross-validation
+
+```{r}
+
+# Grid for tuning parameter lambda:
+
+lambda_max <- 500
+lambda_min <- 0.01
+# More points for large values
+lambda_high <- exp(seq(log(lambda_max), log(20), length.out = 11)) 
+# Fewer points for small values
+lambda_low <- exp(seq(log(20), log(lambda_min), length.out = 10))  
+
+lambda_grid <- unique(c(lambda_high, lambda_low))
+
+
+# Maximum numbers of iterations:
+
+max_iter_lasso <- 1000
+max_iter_fsgl <- 1000
+
+
+# Individual penalty scaling factor:
+
+penalty.factor <- rep(1, ncol(X.all))
+```
+
+
+
+```{r}
+
+# Number of cores for parallel computing:
+n.cores <- 1
+
+
+# LASSOmstate:
+
+gcv.res.lasso.mstate <- gcv.fit.admm.fsgl.mstate(lambda.grid = lambda_grid, 
+                                                 alpha.grid = 1, gamma.grid = 1,
+                                                 X = X, d = d, K = K_lasso,
+                                                 nl = p*q, nf = 0, 
+                                                 ng = 0, groupsizes = NULL, 
+                                                 penalty.factor = penalty.factor,
+                                                 rho = 1, standardize = TRUE,
+                                                 step_size = 0.01, est_tol = 1e-6,
+                                                 eps_rel = 1e-2, eps_abs = 1e-4, 
+                                                 max_iter = max_iter_lasso,
+                                                 n.cores = n.cores)
+
+
+# FSGLmstate: 
+
+gcv.res.fsgl.mstate <- gcv.fit.admm.fsgl.mstate(lambda.grid = lambda_grid, 
+                                                alpha.grid = seq(0.5, 1, by = 0.25), 
+                                                gamma.grid = seq(0, 10.5, by = 0.25), 
+                                                X = X, d = d, K = K2, 
+                                                nl = p*q, nf = s, 
+                                                ng = q, groupsizes = rep(p, q),
+                                                rho = 1, standardize = TRUE, 
+                                                penalty.factor = penalty.factor,
+                                                step_size = 0.01, est_tol = 1e-6,
+                                                eps_rel = 1e-2, eps_abs = 1e-4, 
+                                                max_iter = max_iter_fsgl,
+                                                n.cores = n.cores)
+```
+
+
