@@ -14,6 +14,8 @@
 #'   \item{RM}{State of relapse mortality (RM)}
 #'   \item{Relapse2}{State of second relapse}
 #'   \item{Death_CR2}{State of death in CR2}
+#'   \item{X1}{Binary covariate X1}
+#'   \item{X2}{Binary covariate X2}
 #'   ...
 #' }
 #' @source View data-raw/sim_data_aml.R

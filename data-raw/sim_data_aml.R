@@ -144,7 +144,8 @@ MS <- generate_dat(n = 500, p = p, pars = pars, X.design = 'bin')
 
 sim_data_aml <- subset(MS, select = c('stop1', 'stop2', 'stop3', 'stop4',
                                       'CR1', 'Death_noCR', 'Relapse1', 'NRM_CR',
-                                      'CR2', 'RM', 'Relapse2', 'Death_CR2'))
+                                      'CR2', 'RM', 'Relapse2', 'Death_CR2',
+                                      'X1', 'X2'))
 
 
 # Save sim_data_aml:
