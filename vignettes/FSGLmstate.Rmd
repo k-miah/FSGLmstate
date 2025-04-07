@@ -18,11 +18,11 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-The purpose of the present vignette is to demonstrate the usage of FSGLmstate
+The purpose of the present vignette is to demonstrate the usage of *FSGLmstate*
 for variable selection via fused sparse-group lasso (FSGL) penalized multi-state 
 models based on clinical and molecular data (Miah et al., 2024).
 
-After installation, the FSGLmstate package is loaded in the usual way:
+After installation, the `FSGLmstate` package is loaded in the usual way:
 
 ```{r setup}
 # devtools::install_github("k-miah/FSGLmstate")
@@ -38,15 +38,14 @@ packageDescription("FSGLmstate", fields = "Version")
 
 For illustration purposes, we use a simulated multi-state data set based on a 
 9-state model of the acute myeloid leukemia (AML) disease pathway as reported in 
-Section~5 of Miah et al. (2024).
+Section 5 of Miah et al. (2024).
 
 In the following, wide format data is transformed to long format data as in the
-mstate R package (see details in Wreede et al., 2011).
+*mstate* R package (see details in Wreede et al., 2011).
 
 ```{r preprocessing}
-
 # Load data:
-# data("sim_data_aml")
+data("sim_data_aml")
 
 # View data:
 head("sim_data_aml")
@@ -91,11 +90,11 @@ X <- as.matrix(X.all)
 
 ## Penalty structure matrix
 
-
+The penalty structure matrix $K$ is constructed by `penalty_matrix_K()`
+as follows:
 
 ```{r}
-
-# Penalty structure matrix K:
+# Difference matrix:
 
 s <- 2 # total number of pairs of similar transitions
 
@@ -126,11 +125,10 @@ K_lasso
 ## Estimation via FSGLmstate algorithm
 
 For penalized Cox-type estimation via the FSGLmstate algorithm for a fixed set 
-of tuning parameters $\alpha, \gamma$ and $\lambda$, the R-function \texttt{fit.admm.fsgl.mstate()} 
-can be used as follows:
+of tuning parameters $\alpha, \gamma$ and $\lambda$, the R-function 
+`fit.admm.fsgl.mstate()` can be used as follows:
 
-```{r fixed}
-
+```{r fixed, warning=FALSE}
 # (A1) Unpenalized estimation: lambda=0
 
 # no standardization needed for binary covariates
@@ -169,8 +167,7 @@ res.lasso.mstate$theta
 ```
 
 
-```{r fixedFSGL}
-
+```{r fixedFSGL, warning=FALSE}
 # (A3) Only fused penalized mstate model: (alpha, gamma) = (1, 0) | (0, 0) 
 
 res.fused.mstate <- fit.admm.fsgl.mstate(X = X, d = d, K = K2, 
@@ -219,8 +216,12 @@ res.fsgl.mstate$theta
 
 ## Choice of optimal tuning parameters via generalized cross-validation
 
-```{r}
+For penalized Cox-type estimation via the FSGLmstate algorithm for an optimal
+set of tuning parameters $\alpha, \gamma \in [0,1]$ and $\lambda > 0$ evaluated 
+by generalized cross-validation (GCV) as selection criterion, the R-function 
+`gcv.fit.admm.fsgl.mstate()` can be used as follows:
 
+```{r tuning}
 # Grid for tuning parameter lambda:
 
 lambda_max <- 500
@@ -244,10 +245,11 @@ max_iter_fsgl <- 1000
 penalty.factor <- rep(1, ncol(X.all))
 ```
 
+The function `gcv.fit.admm.fsgl.mstate()` supports parallel computing 
+across multiple cores by utilizing the *parallel* package in R 
+(R Core Team, 2025), enabled through the `n.cores` argument.
 
-
-```{r}
-
+```{r gcv_fit, eval = FALSE}
 # Number of cores for parallel computing:
 n.cores <- 1
 
