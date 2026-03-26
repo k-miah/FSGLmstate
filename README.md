@@ -1,7 +1,7 @@
 # FSGLmstate <img src="https://raw.githubusercontent.com/k-miah/FSGLmstate/main/FSGLmstate.png" alt="Package Logo" align="right" height="250" />
 [![DOI](https://img.shields.io/badge/DOI-10.1002%2Fbimj.70087-blue)](https://doi.org/10.1002/bimj.70087)
 
-`FSGLmstate` is an R package that performs variable selection via fused sparse-group lasso (FSGL) penalized multi-state models [(Miah et al., 2025)](https://onlinelibrary.wiley.com/doi/full/10.1002/bimj.70087).
+`FSGLmstate` is an R package that performs variable selection via fused sparse-group lasso (FSGL) penalized multi-state models [(Miah et al., 2025)](https://doi.org/10.1002/bimj.70087).
 
 ## Abstract
 
