@@ -39,8 +39,3 @@ library(FSGLmstate)
 
 Bugs and issues can be reported at https://github.com/k-miah/FSGLmstate/issues.
 
-## Contact
-
-For any questions or feedback, please reach out to [kaya.miah@gmail.com](mailto:kaya.miah@gmail.com).
-
-
